@@ -31,7 +31,7 @@
 
       <mat-icon mat-list-icon>repeat</mat-icon>
       <h4 mat-line>{{servico.name}}</h4>
-      <p mat-line> Alterado em {{servico.updated | date}} </p>
+      <p mat-line> Alterado em {{servico.updated | date: "dd/MM/yy HH:mm"}} </p>
 
       <mat-slide-toggle (click)="alterarStatus(servico)"
           class="example-margin"
@@ -51,7 +51,7 @@
 
       <mat-icon mat-list-icon>stop</mat-icon>
       <h4 mat-line>{{servico.name}}</h4>
-      <p mat-line> Alterado em {{servico.updated | date}} </p>
+      <p mat-line> Alterado em {{servico.updated | date: "dd/MM/yy HH:mm"}} </p>
 
       <mat-slide-toggle (click)="alterarStatus(servico)"
           class="example-margin"

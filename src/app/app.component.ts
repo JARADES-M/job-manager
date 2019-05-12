@@ -40,13 +40,15 @@ export class AppComponent {
   ];
 
   ativarTodos() {
-    this.servicos.map(s => s.checked = true);
+    this.servicos.map(s => {s.checked = true, s.updated = new Date()});
   }
   desativarTodos() {
-    this.servicos.map(s => s.checked = false);
+    this.servicos.map(s => {s.checked = false, s.updated = new Date()});
   }
   alterarStatus(servico: Servico){
-    this.servicos.filter(s => s.name == servico.name).map(s => s.checked = !servico.checked);
+    this.servicos.filter(s => s.name == servico.name).map(s => {
+      s.checked = !servico.checked; s.updated = new Date()
+    });
   }
 
 }

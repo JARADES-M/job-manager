@@ -32,3 +32,8 @@ body {
 .mat-icon-button {
     float: right;
 }
+
+.menu-right {
+  flex: 1 1 auto;
+  text-align: right;
+}

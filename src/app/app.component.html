@@ -1,64 +1,68 @@
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>Gerenciador De Serviços</span>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
 
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <span>Gerenciador De Serviços</span>
+
+    <div class="menu-right">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
-    </button>
+      </button>
 
       <mat-menu #menu="matMenu">
         <button mat-menu-item>
-          <mat-icon>dialpad</mat-icon>
-          <span>Redial</span>
-        </button>
-        <button mat-menu-item disabled>
-          <mat-icon>voicemail</mat-icon>
-          <span>Check voicemail</span>
+          <mat-icon>done_all</mat-icon>
+          <span (click)="ativarTodos()">Ativar Todos</span>
         </button>
         <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Disable alerts</span>
+          <mat-icon>clear_all</mat-icon>
+          <span (click)="desativarTodos()">Desativar Todos</span>
         </button>
       </mat-menu>
+    </div>
 
-    </mat-toolbar-row>
-  </mat-toolbar>
+  </mat-toolbar-row>
+</mat-toolbar>
   
-  <mat-list>
+<mat-list>
 
-    <h3 mat-subheader>Serviços Ativos</h3>
-    <mat-list-item *ngFor="let servico of ativos">
+  <h3 mat-subheader>Serviços Ativos</h3>
+  <span *ngFor="let servico of servicos">
+    <mat-list-item *ngIf="servico.ativo">
 
       <mat-icon mat-list-icon>repeat</mat-icon>
       <h4 mat-line>{{servico.name}}</h4>
       <p mat-line> Alterado em {{servico.updated | date}} </p>
 
-            <mat-slide-toggle
-                class="example-margin"
-                [color]="color"
-                [checked]="servico.checked"
-                [disabled]="disabled">
-                On
-            </mat-slide-toggle>
+      <mat-slide-toggle 
+          class="example-margin"
+          [color]="color"
+          [checked]="servico.checked"
+          [disabled]="disabled">
+          On
+      </mat-slide-toggle>
 
     </mat-list-item>
+  </span>
 
-    <mat-divider></mat-divider>
-    <h3 mat-subheader>Serviços Inativos</h3>
-    <mat-list-item *ngFor="let servico of inativos">
+  <mat-divider></mat-divider>
+  <h3 mat-subheader>Serviços Inativos</h3>
+  <span *ngFor="let servico of servicos">
+    <mat-list-item *ngIf="!servico.ativo">
+
       <mat-icon mat-list-icon>stop</mat-icon>
       <h4 mat-line>{{servico.name}}</h4>
       <p mat-line> Alterado em {{servico.updated | date}} </p>
 
-            <mat-slide-toggle
-                class="example-margin"
-                [color]="color"
-                [checked]="servico.checked"
-                [disabled]="disabled">
-                On
-            </mat-slide-toggle>
+      <mat-slide-toggle 
+          class="example-margin"
+          [color]="color"
+          [checked]="servico.checked"
+          [disabled]="disabled">
+          On
+      </mat-slide-toggle>
 
     </mat-list-item>
-  </mat-list>
+  </span>
+</mat-list>
 
 <router-outlet></router-outlet>

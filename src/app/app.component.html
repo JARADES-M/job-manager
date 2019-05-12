@@ -9,13 +9,13 @@
       </button>
 
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button (click)="ativarTodos()" mat-menu-item>
           <mat-icon>done_all</mat-icon>
-          <span (click)="ativarTodos()">Ativar Todos</span>
+          <span>Ativar Todos</span>
         </button>
-        <button mat-menu-item>
+        <button (click)="desativarTodos()" mat-menu-item>
           <mat-icon>clear_all</mat-icon>
-          <span (click)="desativarTodos()">Desativar Todos</span>
+          <span>Desativar Todos</span>
         </button>
       </mat-menu>
     </div>
@@ -27,13 +27,13 @@
 
   <h3 mat-subheader>Serviços Ativos</h3>
   <span *ngFor="let servico of servicos">
-    <mat-list-item *ngIf="servico.ativo">
+    <mat-list-item *ngIf="servico.checked">
 
       <mat-icon mat-list-icon>repeat</mat-icon>
       <h4 mat-line>{{servico.name}}</h4>
       <p mat-line> Alterado em {{servico.updated | date}} </p>
 
-      <mat-slide-toggle 
+      <mat-slide-toggle (click)="alterarStatus(servico)"
           class="example-margin"
           [color]="color"
           [checked]="servico.checked"
@@ -47,13 +47,13 @@
   <mat-divider></mat-divider>
   <h3 mat-subheader>Serviços Inativos</h3>
   <span *ngFor="let servico of servicos">
-    <mat-list-item *ngIf="!servico.ativo">
+    <mat-list-item *ngIf="!servico.checked">
 
       <mat-icon mat-list-icon>stop</mat-icon>
       <h4 mat-line>{{servico.name}}</h4>
       <p mat-line> Alterado em {{servico.updated | date}} </p>
 
-      <mat-slide-toggle 
+      <mat-slide-toggle (click)="alterarStatus(servico)"
           class="example-margin"
           [color]="color"
           [checked]="servico.checked"
